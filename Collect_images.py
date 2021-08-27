@@ -17,7 +17,9 @@ while len(data)<100:
     image_from_url = urllib.request.urlopen(url)
     frame =np.array(bytearray(image_from_url.read()),np.uint8)
     frame = cv2.imdecode(frame,-1)
-    
+    # 1.5 here refers to the scaling factor(how much the image should be reduced at each image scale)
+    #5 refers to the no.of neighbors the rectangle should have.
+    # detectMultiScale returns rectangle of x,y,w,h 
     faces = classifier.detectMultiScale(frame,1.5,5)
     
     if len(faces)>0:
